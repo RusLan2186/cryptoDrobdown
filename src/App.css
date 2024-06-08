@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
+header {
+  padding: 10px;
+
+  color: #61dafb;
+  display: flex;
+  align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav {
+  flex: 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.dropdown-container {
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
+  width: 150px;
+  gap: 15px;
+}
+
+button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #61dafb;
+  border: none;
+  color: #20232a;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #21a1f1;
+}
+
+.filter__coins{
+  display: flex;
+  justify-content: space-between;
+}
+.filter__item{
+  cursor: pointer;
+}
+
+.dropdown-list {
+display: flex;
+flex-direction: column;
+row-gap: 20px;
+}
+
+.dropdown-item {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.favorites-list {
+  margin-top: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.favorites-list h4 {
+  margin-bottom: 15px;
+}
+
+
+.active {
+  background-color: grey;
+}
+
+.fav-icon {
+  width: 20px;
+  cursor: pointer;
+}
+
+.search__wrapper{
+  position: relative;
+}
+
+.search-input{
+  position: relative;
+}
+
+.clear__search{
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
