@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../../App.css';
 import favIcon from '../../icons/star.svg';
 import favIconActive from '../../icons/star__active.svg';
+import searchIcon from '../../icons/search.svg';
+import favFilterIcon from '../../icons/favFilter.svg';
 import Loader from '../Loader/Loader';
 
 const Dropdown: React.FC = () => {
@@ -76,95 +78,107 @@ const Dropdown: React.FC = () => {
   };
 
   return (
-    <div className='dropdown-container'>
-      {loadError && <div> Error: {loadError}</div>}
-      <button
+    <div className='dropdown-wrapper'>
+      <div
         onClick={toggleDropdown}
-        className={isOpen ? 'active' : 'toggle-button'}
+        className={isOpen ? 'active' : 'search__button'}
       >
-        Search
-      </button>
+        <img src={searchIcon} alt='search' />
+        <button className='toggle-button'>SEARCH</button>
+      </div>
 
-      {isOpen && (
-        <>
-          {isLoad
-            && <Loader />}
-          <div className='search__wrapper'>
-            <input
-              type='text'
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              placeholder='Search for a coin...'
-              className='search-input'
-            />
-            {searchValue && (
-              <span
-                onClick={() => setSearchValue('')}
-                className='clear__search'
+      <div className={isOpen ? 'dropdown-container' : ''}>
+        {loadError && <div> Error: {loadError}</div>}
+
+        {isOpen && (
+          <>
+            {isLoad && <Loader />}
+            <div className='search__wrapper'>
+              <img className='search__icon' src={searchIcon} alt='search' />
+              <input
+                type='text'
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                className='search-input'
+              />
+              {searchValue && (
+                <span
+                  onClick={() => setSearchValue('')}
+                  className='clear__search'
+                >
+                  X
+                </span>
+              )}
+            </div>
+
+            <div className='filter__coins'>
+              <p
+                className={
+                  !isShowFavourites
+                    ? 'filter__item'
+                    : 'filter__item filter__active'
+                }
+                onClick={() => setIsShowFavorites(true)}
               >
-                X
-              </span>
-            )}
-          </div>
+                <img src={favFilterIcon} alt='favFilterIcon' />
+                FAVORITES
+              </p>
+              <p
+                className={
+                  isShowFavourites
+                    ? 'filter__item'
+                    : 'filter__item filter__active'
+                }
+                onClick={() => setIsShowFavorites(false)}
+              >
+                ALL COINS
+              </p>
+            </div>
 
-          <div className='filter__coins'>
-            <p
-              className='filter__item'
-              onClick={() => setIsShowFavorites(true)}
-            >
-              Favourites
-            </p>
-            <p
-              className='filter__item'
-              onClick={() => setIsShowFavorites(false)}
-            >
-              All coins
-            </p>
-          </div>
+            {filteredCoins.length === 0 && <h1>Not Found</h1>}
 
-          {filteredCoins.length === 0 && <h1>Not Found</h1>}
+            {!isShowFavourites ? (
+              <div className='dropdown-list'>
+                {filteredCoins.map((coin, index) => (
+                  <div key={coin} className='dropdown-item'>
+                    {isActiveIcon.includes(index) ? (
+                      <img
+                        onClick={() => handleFavorite(coin)}
+                        className='fav-icon'
+                        src={favIconActive}
+                        alt='favourites'
+                      />
+                    ) : (
+                      <img
+                        onClick={() => handleFavorite(coin)}
+                        className='fav-icon'
+                        src={favIcon}
+                        alt='favourites'
+                      />
+                    )}
 
-          {!isShowFavourites ? (
-            <div className='dropdown-list'>
-              {filteredCoins.map((coin, index) => (
-                <div key={coin} className='dropdown-item'>
-                  {isActiveIcon.includes(index) ? (
+                    {coin}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className='dropdown-list'>
+                {filteredCoins.map((favorite) => (
+                  <div key={favorite} className='dropdown-item'>
                     <img
-                      onClick={() => handleFavorite(coin)}
+                      onClick={() => handleFavorite(favorite)}
                       className='fav-icon'
                       src={favIconActive}
                       alt='favourites'
                     />
-                  ) : (
-                    <img
-                      onClick={() => handleFavorite(coin)}
-                      className='fav-icon'
-                      src={favIcon}
-                      alt='favourites'
-                    />
-                  )}
-
-                  {coin}
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className='dropdown-list'>
-              {filteredCoins.map((favorite) => (
-                <div key={favorite} className='dropdown-item'>
-                  <img
-                    onClick={() => handleFavorite(favorite)}
-                    className='fav-icon'
-                    src={favIconActive}
-                    alt='favourites'
-                  />
-                  {favorite}
-                </div>
-              ))}
-            </div>
-          )}
-        </>
-      )}
+                    {favorite}
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 };

@@ -7,7 +7,6 @@ function App() {
   return (
     <div>
       <header>
-      
         <nav>
           <Dropdown />
         </nav>
