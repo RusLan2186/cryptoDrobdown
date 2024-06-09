@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/cryptoDrobdown/static/css/main.98618a53.css",
-    "main.js": "/cryptoDrobdown/static/js/main.19245a05.js",
+    "main.css": "/cryptoDrobdown/static/css/main.d8513d12.css",
+    "main.js": "/cryptoDrobdown/static/js/main.2107f030.js",
     "static/js/453.ed3810f9.chunk.js": "/cryptoDrobdown/static/js/453.ed3810f9.chunk.js",
     "static/media/star.svg": "/cryptoDrobdown/static/media/star.b84673a9da6e504c70d6abb60fb5743a.svg",
     "static/media/star__active.svg": "/cryptoDrobdown/static/media/star__active.e688cd4c0406e3ac12191e07a708456b.svg",
     "static/media/favFilter.svg": "/cryptoDrobdown/static/media/favFilter.5e80a9c49733941d1e54b6ea06057fb0.svg",
     "index.html": "/cryptoDrobdown/index.html",
     "static/media/search.svg": "/cryptoDrobdown/static/media/search.f7ed1a6da7a21f2a4d6bd24018bb71ef.svg",
-    "main.98618a53.css.map": "/cryptoDrobdown/static/css/main.98618a53.css.map",
-    "main.19245a05.js.map": "/cryptoDrobdown/static/js/main.19245a05.js.map",
+    "main.d8513d12.css.map": "/cryptoDrobdown/static/css/main.d8513d12.css.map",
+    "main.2107f030.js.map": "/cryptoDrobdown/static/js/main.2107f030.js.map",
     "453.ed3810f9.chunk.js.map": "/cryptoDrobdown/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.98618a53.css",
-    "static/js/main.19245a05.js"
+    "static/css/main.d8513d12.css",
+    "static/js/main.2107f030.js"
   ]
 }
