@@ -1,46 +1,72 @@
-# Getting Started with Create React App
+# React App Crypto Drobdown
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+Crypto Drobdown is a React web application that allows users to search for and add cryptocurrencies to their favorites. The application interacts with an API to fetch real-time data about cryptocurrencies and provides a user-friendly interface for managing them.
 
-In the project directory, you can run:
+-  [DEMO LINK](https://ruslan2186.github.io/cryptoDrobdown/)  
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Search: Enter the name of a cryptocurrency to find the desired coin.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Add to favorites: Click on the star icon to add or remove a cryptocurrency from favorites.
+  
+- Filter: Toggle between displaying all cryptocurrencies and only favorites.
+  
+- Dynamic updates: Searching and filtering occur in real-time.
+  
+- Dropdown list closure: The search dropdown list automatically closes when clicked outside the list.
+  
+## Technology Stack
 
-### `npm test`
+- React: JavaScript library for building user interfaces.
+  
+- TypeScript: Strictly typed superset of JavaScript.
+  
+- Fetch API: Built-in method for fetching data from the server
+  
+- CSS Modules: Used for styling components.
+  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies used
 
-### `npm run build`
+- React: For building the user interface.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- TypeScript: For type safety and improved developer experience..
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- CSS: For styling the components.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Fetch API: For making API requests to manage todos.
+  
+  
+## Instructions for Launch:
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Ensure you have the following installed:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Node.js (v14.21.3)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Installation
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Clone the repository:
 
-## Learn More
+```bash
+https://github.com/RusLan2186/cryptoDrobdown.git
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Install the necessary dependencies using:
+   
+```bash
+npm install
+```
+
+3. Launch the project using:
+   
+```bash
+npm start
+```
+
+
