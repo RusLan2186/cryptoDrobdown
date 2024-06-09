@@ -5,6 +5,7 @@ import favIconActive from '../../icons/star__active.svg';
 import searchIcon from '../../icons/search.svg';
 import favFilterIcon from '../../icons/favFilter.svg';
 import Loader from '../Loader/Loader';
+import './Drobdown.css';
 
 const Dropdown: React.FC = () => {
   const [coins, setCoins] = useState<string[]>([]);

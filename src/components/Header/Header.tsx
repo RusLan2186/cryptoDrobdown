@@ -1,5 +1,5 @@
-import React from 'react';
 import Dropdown from '../Drobdown/Drobdown';
+import cl from './Header.module.css'
 
 const Header = () => {
   const coins = ['DOGE', 'BTC', 'XTZ', 'ETH'];
@@ -8,10 +8,10 @@ const Header = () => {
     <div>
       <header>
         <nav>
-          <ul className='header__menu'>
+          <ul className={cl.header__menu}>
             {coins.map((coin) => (
               <li key={coin}>
-                <a className='header__link' href='#'>
+                <a className={cl.header__link} href='#'>
                   {coin}
                 </a>
               </li>
