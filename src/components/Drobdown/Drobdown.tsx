@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../../App.css';
 import favIcon from '../../icons/star.svg';
 import favIconActive from '../../icons/star__active.svg';
@@ -13,9 +13,9 @@ const Dropdown: React.FC = () => {
   const [favourites, setFavourites] = useState<string[]>([]);
   const [isShowFavourites, setIsShowFavorites] = useState(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isActiveIcon, setIsActiveIcon] = useState<number[]>([]);
   const [isLoad, setIsLoad] = useState(false);
   const [loadError, setLoadError] = useState('');
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setIsLoad(true);
@@ -33,49 +33,31 @@ const Dropdown: React.FC = () => {
   }, []);
 
   const handleFavorite = (coin: string) => {
-    const coinIndex = coins.indexOf(coin);
-    const newActiveIcons = [...isActiveIcon];
-
-    if (favourites.includes(coin)) {
-      setFavourites(favourites.filter((fav) => fav !== coin));
-      const indexToRemove = newActiveIcons.indexOf(coinIndex);
-      if (indexToRemove !== -1) {
-        newActiveIcons.splice(indexToRemove, 1);
-        setIsActiveIcon(newActiveIcons);
-      }
-    } else {
-      setFavourites([...favourites, coin]);
-      setIsActiveIcon([...isActiveIcon, coinIndex]);
-    }
+    setFavourites((prevFavourites) =>
+      prevFavourites.includes(coin)
+        ? prevFavourites.filter((fav) => fav !== coin)
+        : [...prevFavourites, coin],
+    );
   };
 
   useEffect(() => {
-    if (isShowFavourites) {
-      if (searchValue === '') {
-        setFilteredCoins([...favourites]);
-      } else {
-        setFilteredCoins(
-          favourites.filter((favItem) =>
-            favItem.toLowerCase().includes(searchValue.toLowerCase()),
-          ),
-        );
-      }
-    } else {
-      if (searchValue === '') {
-        setFilteredCoins([...coins]);
-      } else {
-        setFilteredCoins(
-          coins.filter((coin) =>
-            coin.toLowerCase().includes(searchValue.toLowerCase()),
-          ),
-        );
-      }
-    }
+    const sourceList = isShowFavourites ? favourites : coins;
+    setFilteredCoins(
+      sourceList.filter((coin) =>
+        coin.toLowerCase().includes(searchValue.toLowerCase()),
+      ),
+    );
   }, [searchValue, coins, favourites, isShowFavourites]);
+
+  useEffect(() => {
+    if (isOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  },[isOpen])
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
-  };
+};
 
   return (
     <div className='dropdown-wrapper'>
@@ -88,11 +70,10 @@ const Dropdown: React.FC = () => {
       </div>
 
       <div className={isOpen ? 'dropdown-container' : ''}>
-        {loadError && <div> Error: {loadError}</div>}
-
         {isOpen && (
           <>
-            {isLoad && <Loader />}
+            {isLoad && <div className='loader'><Loader /></div> }
+            {loadError && <div className='error'> Error: {loadError}</div>}
             <div className='search__wrapper'>
               <img className='search__icon' src={searchIcon} alt='search' />
               <input
@@ -100,6 +81,8 @@ const Dropdown: React.FC = () => {
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 className='search-input'
+                placeholder='Search for a coin...'
+                ref={searchInputRef}
               />
               {searchValue && (
                 <span
@@ -114,9 +97,9 @@ const Dropdown: React.FC = () => {
             <div className='filter__coins'>
               <p
                 className={
-                  !isShowFavourites
-                    ? 'filter__item'
-                    : 'filter__item filter__active'
+                  isShowFavourites
+                    ? 'filter__item filter__active'
+                    : 'filter__item'
                 }
                 onClick={() => setIsShowFavorites(true)}
               >
@@ -125,9 +108,9 @@ const Dropdown: React.FC = () => {
               </p>
               <p
                 className={
-                  isShowFavourites
-                    ? 'filter__item'
-                    : 'filter__item filter__active'
+                  !isShowFavourites
+                    ? 'filter__item filter__active'
+                    : 'filter__item'
                 }
                 onClick={() => setIsShowFavorites(false)}
               >
@@ -135,47 +118,21 @@ const Dropdown: React.FC = () => {
               </p>
             </div>
 
-            {filteredCoins.length === 0 && <h1>Not Found</h1>}
+            {filteredCoins.length === 0 && !loadError && <h1>Not Found</h1>}
 
-            {!isShowFavourites ? (
-              <div className='dropdown-list'>
-                {filteredCoins.map((coin, index) => (
-                  <div key={coin} className='dropdown-item'>
-                    {isActiveIcon.includes(index) ? (
-                      <img
-                        onClick={() => handleFavorite(coin)}
-                        className='fav-icon'
-                        src={favIconActive}
-                        alt='favourites'
-                      />
-                    ) : (
-                      <img
-                        onClick={() => handleFavorite(coin)}
-                        className='fav-icon'
-                        src={favIcon}
-                        alt='favourites'
-                      />
-                    )}
-
-                    {coin}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className='dropdown-list'>
-                {filteredCoins.map((favorite) => (
-                  <div key={favorite} className='dropdown-item'>
-                    <img
-                      onClick={() => handleFavorite(favorite)}
-                      className='fav-icon'
-                      src={favIconActive}
-                      alt='favourites'
-                    />
-                    {favorite}
-                  </div>
-                ))}
-              </div>
-            )}
+            <div className='dropdown-list'>
+              {filteredCoins.map((coin) => (
+                <div key={coin} className='dropdown-item'>
+                  <img
+                    onClick={() => handleFavorite(coin)}
+                    className='fav-icon'
+                    src={favourites.includes(coin) ? favIconActive : favIcon}
+                    alt='favourites'
+                  />
+                  {coin}
+                </div>
+              ))}
+            </div>
           </>
         )}
       </div>
