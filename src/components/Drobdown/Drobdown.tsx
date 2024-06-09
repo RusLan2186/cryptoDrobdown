@@ -12,7 +12,7 @@ interface Props {
   setIsOpen: (value: boolean) => void;
 }
 
-const Dropdown: React.FC<Props> = ({isOpen, setIsOpen}) => {
+const Dropdown: React.FC<Props> = ({ isOpen, setIsOpen }) => {
   const [coins, setCoins] = useState<string[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
   const [filteredCoins, setFilteredCoins] = useState<string[]>([]);
@@ -58,11 +58,10 @@ const Dropdown: React.FC<Props> = ({isOpen, setIsOpen}) => {
     if (isOpen && searchInputRef.current) {
       searchInputRef.current.focus();
     }
-  },[isOpen])
+  }, [isOpen]);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
-     
   };
 
   return (
@@ -78,7 +77,11 @@ const Dropdown: React.FC<Props> = ({isOpen, setIsOpen}) => {
       <div className={isOpen ? 'dropdown-container' : ''}>
         {isOpen && (
           <>
-            {isLoad && <div className='loader'><Loader /></div> }
+            {isLoad && (
+              <div className='loader'>
+                <Loader />
+              </div>
+            )}
             {loadError && <div className='error'> Error: {loadError}</div>}
             <div className='search__wrapper'>
               <img className='search__icon' src={searchIcon} alt='search' />
@@ -128,10 +131,12 @@ const Dropdown: React.FC<Props> = ({isOpen, setIsOpen}) => {
 
             <div className='dropdown-list'>
               {filteredCoins.map((coin) => (
-                <div key={coin} className='dropdown-item'>
+                <div
+                  key={coin}
+                  className='dropdown-item'
+                  onClick={() => handleFavorite(coin)}
+                >
                   <img
-                    onClick={() => handleFavorite(coin)}
-                    className='fav-icon'
                     src={favourites.includes(coin) ? favIconActive : favIcon}
                     alt='favourites'
                   />

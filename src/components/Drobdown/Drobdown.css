@@ -105,6 +105,7 @@
   height: 300px;
   overflow: auto;
   padding: 0 20px;
+  cursor: pointer;
 }
 
 .dropdown-item {
@@ -141,6 +142,3 @@
   border: 4px solid #cac5c5;
 }
 
-.fav-icon {
-  cursor: pointer;
-}
