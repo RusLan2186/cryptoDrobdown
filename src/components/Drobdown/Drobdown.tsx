@@ -7,13 +7,17 @@ import favFilterIcon from '../../icons/favFilter.svg';
 import Loader from '../Loader/Loader';
 import './Drobdown.css';
 
-const Dropdown: React.FC = () => {
+interface Props {
+  isOpen: boolean;
+  setIsOpen: (value: boolean) => void;
+}
+
+const Dropdown: React.FC<Props> = ({isOpen, setIsOpen}) => {
   const [coins, setCoins] = useState<string[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
   const [filteredCoins, setFilteredCoins] = useState<string[]>([]);
   const [favourites, setFavourites] = useState<string[]>([]);
   const [isShowFavourites, setIsShowFavorites] = useState(false);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isLoad, setIsLoad] = useState(false);
   const [loadError, setLoadError] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -58,7 +62,8 @@ const Dropdown: React.FC = () => {
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
-};
+     
+  };
 
   return (
     <div className='dropdown-wrapper'>
