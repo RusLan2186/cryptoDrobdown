@@ -16,6 +16,9 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #ffffff;
 }
+li {
+  list-style-type: none;
+}
 
 h1 {
   padding: 0 20px;
@@ -31,11 +34,31 @@ header {
 
 nav {
   max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  column-gap: 40px;
+}
+
+.header__menu {
+  display: flex;
+  column-gap: 25px;
+}
+
+.header__link {
+  color: #888;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.3s all ease 0s;
+}
+
+.header__link:hover {
+  color: #fff;
 }
 
 .dropdown-wrapper {
   position: relative;
- }
+}
 
 .search__button {
   display: flex;
@@ -45,7 +68,7 @@ nav {
   border-radius: 10px;
   padding: 10px;
   color: #ffff;
-  transition: background-color 0.3s;
+  border: 4px solid transparent;
 }
 
 .search__button:hover {
