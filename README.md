@@ -18,18 +18,8 @@ Crypto Drobdown is a React web application that allows users to search for and a
   
 - Dropdown list closure: The search dropdown list automatically closes when clicked outside the list.
   
-## Technology Stack
 
-- React: JavaScript library for building user interfaces.
-  
-- TypeScript: Strictly typed superset of JavaScript.
-  
-- Fetch API: Built-in method for fetching data from the server
-  
-- CSS Modules: Used for styling components.
-  
-
-## Technologies used
+## Technologies Stack
 
 - React: For building the user interface.
 
@@ -40,15 +30,7 @@ Crypto Drobdown is a React web application that allows users to search for and a
 - Fetch API: For making API requests to manage todos.
   
   
-## Instructions for Launch:
-
-### Prerequisites
-
-Ensure you have the following installed:
-
-Node.js (v14.21.3)
-
-### Installation
+## Installation
 
 1. Clone the repository:
 
